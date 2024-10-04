@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استبيان مدارس أنجال الصفوة</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .logo {
+            width: 130px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #81c04d;
+            margin-bottom: 25px;
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        label {
+            width: 100%;
+            text-align: right;
+            font-size: 26px;
+            color: #ddd;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px solid #81c04d;
+            border-radius: 10px;
+            font-size: 24px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus {
+            border-color: #81c04d;
+            background-color: #444;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 10px;
+            width: 100%;
+            background-color: #1e1e1e;
+            border: 2px solid #81c04d;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .radio-group label {
+            font-size: 22px;
+            color: #ddd;
+        }
+
+        input[type="radio"] {
+            accent-color: #81c04d;
+        }
+
+        .submit {
+            background-color: #81c04d;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit:hover {
+            background-color: #6fab40;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-size: 22px;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .radio-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .radio-group label {
+                margin-bottom: 10px;
+            }
+        }
+
+        .evaluation {
+            margin-bottom: 20px;
+            text-align: right;
+            font-size: 26px;
+            color: #81c04d;
+        }
+
+        .evaluation-numbers {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 26px;
+            color: #81c04d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="LOGO.jpeg" alt="شعار مدارس أنجال الصفوة" class="logo">
+
+        <h1>استبيان مدارس أنجال الصفوة</h1>
+
+        <div class="evaluation">
+            <p>رأيك يهمنا:</p>
+            <div class="evaluation-numbers">
+                <span>1 - سيء جدًا</span>
+                <span>2 - يحتاج لتحسين</span>
+                <span>3 - جيد</span>
+                <span>4 - جيد جدًا</span>
+                <span>5 - ممتاز</span>
+            </div>
+        </div>
+
+        <form id="survey-form" name="submit-to-google-sheet">
+            <label for="Your_name">الاسم:</label>
+            <input id="Your_name" name="Your_name" type="text" placeholder="اكتب اسمك" required>
+
+            <label for="phone">رقم الجوال:</label>
+            <input id="phone" name="phone" type="text" placeholder="اكتب رقم جوالك" required>
+
+            <label>مدى اهتمامك ورضاك عن بوث مدارس أنجال الصفوة:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="Q1" value="1" required> 1</label>
+                <label><input type="radio" name="Q1" value="2"> 2</label>
+                <label><input type="radio" name="Q1" value="3"> 3</label>
+                <label><input type="radio" name="Q1" value="4"> 4</label>
+                <label><input type="radio" name="Q1" value="5"> 5</label>
+            </div>
+
+            <label>ما مدى احتمال أن توصي بنا لعائلتك وأصدقائك:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="Q2" value="1" required> 1</label>
+                <label><input type="radio" name="Q2" value="2"> 2</label>
+                <label><input type="radio" name="Q2" value="3"> 3</label>
+                <label><input type="radio" name="Q2" value="4"> 4</label>
+                <label><input type="radio" name="Q2" value="5"> 5</label>
+            </div>
+
+            <label>كيف كان تعامل فريق مدارس أنجال الصفوة معك:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="Q3" value="1" required> 1</label>
+                <label><input type="radio" name="Q3" value="2"> 2</label>
+                <label><input type="radio" name="Q3" value="3"> 3</label>
+                <label><input type="radio" name="Q3" value="4"> 4</label>
+                <label><input type="radio" name="Q3" value="5"> 5</label>
+            </div>
+
+            <button type="submit" class="submit">إرسال</button>
+
+        </form>
+
+    </div>
+
+    <script>
+        window.onload = function () {
+            const surveyForm = document.getElementById('survey-form');
+            surveyForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // الحصول على البيانات من النموذج
+                const name = document.getElementById("Your_name").value;
+                const phone = document.getElementById("phone").value;
+                const q1 = document.querySelector('input[name="Q1"]:checked').value;
+                const q2 = document.querySelector('input[name="Q2"]:checked').value;
+                const q3 = document.querySelector('input[name="Q3"]:checked').value;
+
+                // إرسال البيانات إلى Google Sheets
+                var data = {
+                    "Name": name,
+                    "Phone": phone,
+                    "Q1": q1,
+                    "Q2": q2,
+                    "Q3": q3
+                };
+
+                var url = "https://script.google.com/macros/s/AKfycbw60hNTAUZ23GSQKFS_etwZcxOPZlgbBksiBgDLCPEsGSb92HSYesvbZFXvQDNnVd1W/exec"; // رابط الـ Web App
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Success:', result);
+
+                    // عرض رسالة التأكيد
+                    const messageDiv = document.createElement('div');
+                    messageDiv.id = 'message';
+                    messageDiv.innerHTML = "تم إرسال البيانات بنجاح! سيتم إرسال رسالة شكر عبر WhatsApp.";
+                    document.body.appendChild(messageDiv);
+
+                    // تفريغ الحقول بعد الإرسال
+                    document.getElementById("Your_name").value = '';
+                    document.getElementById("phone").value = '';
+                    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+
+                    // إعداد رسالة WhatsApp
+                    const whatsappMessage = `مرحبا ${name} 😊،\n\nشكراً لك على زيارتنا وتقييم جناح مدارس أنجال الصفوة! نتمنى أن تكون تجربتك رائعة معنا 🌟.\n\n🔗 نتشرف بزيارتك لموقعنا الإلكتروني للاطلاع على المزيد:\nhttps://www.anjalalsifwa.com/\n\n📘 يمكنك أيضًا تحميل الكتيب الخاص بنا عبر الرابط التالي:\nhttps://drive.google.com/file/d/1dVUHcWF6Tup9y5yNv0tADFuHMGFJblO4/view?usp=sharing\n\nمع خالص التحيات،\nمدارس أنجال الصفوة 💚`;
+
+                    const whatsappLink = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(whatsappMessage)}`;
+                    
+                    // توجيه المستخدم إلى WhatsApp بعد 1 ثانية
+                    setTimeout(function () {
+                        window.location.href = whatsappLink;
+
+                        // إزالة رسالة التأكيد بعد فتح الواتساب
+                        setTimeout(function() {
+                            document.getElementById('message').remove();
+                        }, 1000);
+
+                    }, 1000);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("حدث خطأ أثناء إرسال البيانات.");
+                });
+            });
+        }
+    </script>
+
+</body>
+
+</html>
