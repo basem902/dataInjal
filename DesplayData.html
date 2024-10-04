@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استبيان مدارس أنجال الصفوة</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* خلفية داكنة */
+            color: #f0f0f0; /* لون النص */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            direction: rtl; /* اتجاه النص من اليمين لليسار */
+        }
+
+        .container {
+            background-color: #1e1e1e; /* لون حاوية داكن */
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 15px; /* حواف ناعمة */
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); /* ظل الحاوية */
+            text-align: center;
+        }
+
+        h1 {
+            color: #81c04d; /* اللون الأخضر من الشعار */
+            margin-bottom: 25px;
+            font-size: 34px; /* تكبير الخط */
+            font-weight: bold;
+        }
+
+        .participant-count {
+            margin-top: 20px;
+            font-size: 22px; /* تكبير الخط */
+            color: #81c04d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #81c04d;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #81c04d;
+            color: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #2e2e2e;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #1e1e1e;
+        }
+
+        .btn {
+            background-color: #81c04d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- شعار مدارس أنجال الصفوة -->
+        <h1>استبيان مدارس أنجال الصفوة</h1>
+
+        <!-- عرض عدد المشاركين -->
+        <div id="participant-count" class="participant-count">عدد المشاركين: 0</div>
+
+        <!-- زر جلب البيانات -->
+        <button class="btn">Get Sheet Data</button>
+
+        <!-- عرض البيانات المستوردة -->
+        <div class="output"></div>
+    </div>
+
+    <script>
+        // استبدال رابط Google Apps Script الخاص بجلب البيانات
+        const url = "https://script.google.com/macros/s/AKfycbw60hNTAUZ23GSQKFS_etwZcxOPZlgbBksiBgDLCPEsGSb92HSYesvbZFXvQDNnVd1W/exec";
+        const btn = document.querySelector('.btn');
+        const output = document.querySelector('.output');
+        const participantCount = document.getElementById('participant-count');
+        btn.textContent = "Get Sheet Data";
+
+        btn.onclick = (e) => {
+            fetch(url).then(res => res.json()).then(data => {
+                console.log(data);
+
+                // حساب عدد المشاركين (عدد الصفوف بدون العناوين)
+                const numberOfParticipants = data.length - 1;
+                participantCount.textContent = `عدد المشاركين: ${numberOfParticipants}`;
+
+                // تعديل العناوين لتتناسب مع الأعمدة في Google Sheet
+                const headings = ['name', 'phone', 'q1', 'q2', 'q3'];  
+                const rows = data.slice(1).reverse();  // عكس ترتيب الصفوف لعرض الأحدث أولاً
+                outputData(headings, rows);
+            });
+        }
+
+        function outputData(headings, rows) {
+            output.innerHTML = '';
+            const tabl = maker('table', output, 'table');
+            const heading = maker('tr', tabl, 'row');
+
+            // إضافة العناوين إلى الجدول
+            headings.forEach(ele => {
+                const el = maker('th', heading, 'th');
+                el.textContent = ele;
+            });
+
+            // إضافة البيانات لكل صف
+            rows.forEach(row => {
+                const r = maker('tr', tabl, 'row');
+                row.forEach(col => {
+                    const el = maker('td', r, 'td');
+                    el.textContent = col;
+                });
+            });
+        }
+
+        function maker(t, parent, c) {
+            const el = document.createElement(t);
+            el.classList.add(c);
+            return parent.appendChild(el);
+        }
+
+    </script>
+
+</body>
+
+</html>
